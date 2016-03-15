@@ -52,10 +52,10 @@ n=numel(M);
 k=floor(log2(K_open(2)))
 if mod(n,k)~=0
     z=k-mod(n,k)
-    buf=M(end-mod(n,k)+1:end)
-    M(end-mod(n,k)+1:end)=''
+    buf=M(end-mod(n,k));
+    M(end-mod(n,k))='';
     M=strcat(M,dec2bin(0,z),buf)
-    numel(M)
+    
     M=reshape(M,k,numel(M)/k)'
 else
    M=reshape(M,k,n/k)'
@@ -69,14 +69,13 @@ set(handles.eS,'String',num2str(S))
 M2=double(mod(sym(S).^K_close(1),sym(K_close(2))))
 
 M2=dec2bin(M2)
-
 M2=reshape(M2',1,numel(M2))
 buf=M2(end-mod(n,k)+1:end);
 M2(end-k+1:end)='';
 M2=strcat(M2,buf);
 M2=reshape(M2,8,numel(M2)/8)'
 M2=bin2dec(M2)'
-set(handles.eM2,'String',native2unicode(M2))
+
 
 
 
